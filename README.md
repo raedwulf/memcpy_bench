@@ -5,7 +5,6 @@ Why?
 ----
 
 Some memory copy benchmarks for the fastest copy in the West.
-Hopefully will make a version with this included into the Linux Kernel.
 
 License
 -------
