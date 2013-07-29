@@ -6,7 +6,7 @@ GASFLAGS =
 
 LIBS=-lm
 
-DEPS = memcpy_bench.h
+DEPS =
 OBJ = memcpy_bench.o memcpy_movsb.o memcpy_sse2.o
 
 %.o: %.c $(DEPS)
