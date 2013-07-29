@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -std=gnu11 -I.
+CFLAGS = -std=gnu11 -O3 -I.
 
 GAS = as
 GASFLAGS =
@@ -16,7 +16,7 @@ OBJ = memcpy_bench.o memcpy_movsb.o memcpy_sse2.o
 	$(GAS) $(GASFLAGS) -o $@ $<
 
 memcpy_bench: $(OBJ)
-	gcc -o $@ $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 

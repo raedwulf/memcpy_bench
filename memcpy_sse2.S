@@ -2,7 +2,7 @@
 
 .text
 _memcpy_sse2:
-	cmpq $256, %rcx
+	cmpq $256, %rdx
 	jb less_than_256
 loop_256:
 	movdqu   0(%rsi), %xmm0
@@ -37,10 +37,31 @@ loop_256:
 	movntdq %xmm13, 208(%rdi)
 	movntdq %xmm14, 224(%rdi)
 	movntdq %xmm15, 240(%rdi)
-	subq $256, %rcx
+	addq $256, %rsi
+	addq $256, %rdi
+	subq $256, %rdx
 	jae loop_256
 less_than_256:
 	movq %rdi, %rax
-	movq %rdx, %rcx
+	lea 256(%rdx), %rcx
 	rep movsb
 	ret
+
+       ; cmpq $64, %rcx
+	;jb less_than_64
+;loop_64:
+	;movdqu   0(%rsi), %xmm0
+	;movdqu  16(%rsi), %xmm1
+	;movdqu  32(%rsi), %xmm2
+	;movdqu  48(%rsi), %xmm3
+	;movntdq %xmm0 ,   0(%rdi)
+	;movntdq %xmm1 ,  16(%rdi)
+	;movntdq %xmm2 ,  32(%rdi)
+	;movntdq %xmm3 ,  48(%rdi)
+	;subq $64, %rcx
+	;addq $64, %rsi
+	;addq $64, %rdi
+	;jae loop_64
+;less_than_64:
+
+
